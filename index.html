@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="OSF: On Pre-training and Scaling of Sleep Foundation Models">
+  <meta name="keywords" content="Foundation Model, Polysomnography, Self-Supervised Learning, Sleep">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OSF: On Pre-training and Scaling of Sleep Foundation Models</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" data-tab="home"><span>Open Sleep Foundation Model</span></a>
+    <button class="nav-toggle" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#" class="active" data-tab="home">Home</a></li>
+      <li><a href="#" data-tab="findings">Findings</a></li>
+      <li><a href="#" data-tab="results">Results</a></li>
+      <li><a href="#" data-tab="citation">Cite</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="dropdown-trigger">More Work <i class="fas fa-caret-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="https://yang-ai-lab.github.io/SleepLM/" target="_blank">SleepLM: Natural-Language Intelligence for Human Sleep</a></li>
+          <li><a href="https://yang-ai-lab.github.io/HEARTS/" target="_blank">LLM Reasoning on Health Time-Series</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== Tab: Home ===== -->
+<div id="tab-home" class="tab-panel active">
+
+  <section class="hero-section">
+    <div class="section-inner">
+      <div class="hero-title">
+        <h1>OSF: On Pre-training and Scaling of Sleep Foundation Models</h1>
+        <div class="authors">
+          <span class="author-block"><a href="https://zitao-shuai.github.io/">Zitao Shuai</a><sup>1</sup>,</span>
+          <span class="author-block"><a href="https://github.com/Zongzhe-Xu/">Zongzhe Xu</a><sup>1</sup>,</span>
+          <span class="author-block"><a href="https://sites.google.com/view/daviddongjunyang">David Yang</a><sup>2</sup>,</span>
+          <span class="author-block"><a href="https://web.cs.ucla.edu/~weiwang/">Wei Wang</a><sup>1</sup>,</span>
+          <span class="author-block"><a href="https://web.cs.ucla.edu/~yuzhe/">Yuzhe Yang</a><sup>1</sup></span>
+        </div>
+        <div class="affiliation">
+          <sup>1</sup>University of California, Los Angeles &nbsp;&nbsp;
+          <sup>2</sup>Emory University
+        </div>
+
+        <div class="link-buttons">
+          <a href="https://huggingface.co/yang-ai-lab/OSF-Base" target="_blank">
+            <span class="icon"><i class="fas fa-cube"></i></span>
+            Hugging Face
+          </a>
+          <a href="https://github.com/yang-ai-lab/OSF-Open-Sleep-FM" target="_blank">
+            <span class="icon"><i class="fab fa-github"></i></span>
+            Code
+          </a>
+          
+                <a href="https://arxiv.org/pdf/2603.00190"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="teaser-block">
+        <video src="./static/videos/website_gif.mp4" autoplay loop muted playsinline alt="OSF Demo"></video>
+        <p class="teaser-caption">
+          We identify three critical insights for building sleep foundation models, and our pre-trained OSF consistently achieves state-of-the-art performance on diverse downstream sleep tasks.
+        </p>
+      </div>
+
+      <div class="section-header" style="margin-top: 2rem;">
+        <h2><i class="fas fa-bullhorn" style="font-size: 0.85em; margin-right: 0.4rem; color: var(--sky);"></i>News</h2>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <span class="news-date">2026-03-12</span>
+          <span class="news-text">Our arxiv paper is out!</span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2026-02-23</span>
+          <span class="news-text">Project website is live!</span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2026-02-23</span>
+          <span class="news-text">Code released on <a href="https://github.com/yang-ai-lab/OSF-Open-Sleep-Foundation-Model" target="_blank">GitHub</a>.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Abstract</h2>
+      </div>
+      <div class="content-card">
+        <p>
+          Polysomnography (PSG) provides the gold standard for sleep assessment 
+          but suffers from substantial heterogeneity across recording devices and cohorts. 
+          There have been growing efforts to build general-purpose foundation models (FMs) for sleep physiology, 
+          but lack an in-depth understanding of the pre-training process and scaling patterns that lead to more generalizable sleep FMs.
+        </p>
+        <p>
+          To fill this gap, we curate a massive corpus of 166,500 hours of sleep recordings 
+          from nine public sources and establish SleepBench, a comprehensive, fully open-source benchmark. 
+          Leveraging SleepBench, we systematically evaluate four families of self-supervised pre-training objectives
+          and uncover three critical findings: (1) existing FMs fail to generalize to missing channels at inference; 
+          (2) channel-invariant feature learning is essential for pre-training; 
+          and (3) scaling sample size, model capacity, and multi-source data mixture consistently improves downstream performance.
+        </p>
+        <p>
+          With an enhanced pre-training and scaling recipe, we introduce OSF, 
+          a family of sleep FMs that achieves state-of-the-art performance across nine datasets
+          on diverse sleep and disease prediction tasks. 
+          Further analysis of OSF also reveals intriguing properties in sample efficiency, hierarchical aggregation, 
+          and cross-dataset scaling.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Motivation</h2>
+      </div>
+      <div class="content-card">
+        <p>
+          <strong>Which pre-training and scaling design choices truly improve the generalization of sleep FMs, 
+          especially under cohort shift and missing-channel inference?</strong>
+        </p>
+        <p>
+          Existing sleep FMs differ in their pre-training objectives, 
+          but it is unclear which of these choices reliably improve downstream performance across cohorts, 
+          devices, and channel sets. 
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== Tab: Findings ===== -->
+<div id="tab-findings" class="tab-panel">
+
+  <section class="content-section first-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Key Findings</h2>
+      </div>
+      <div class="content-card">
+        <p>
+          Through systematic evaluation on SleepBench, we uncover three critical insights 
+          that guide the design of more robust and generalizable sleep foundation models.
+        </p>
+      </div>
+
+      <div class="finding-components">
+        <div class="finding-item">
+          <h4>Finding 1: Missing-Channel Inference is Challenging</h4>
+          <p>
+            Existing sleep FMs fail to generalize under missing-channel inference, 
+            motivating pre-training designs that explicitly handle channel incompleteness.
+          </p>
+        </div>
+        <div class="finding-item">
+          <h4>Finding 2: Channel-Invariant Pre-training Improves Robustness</h4>
+          <p>
+            Explicitly encouraging channel-invariant feature learning during pre-training 
+            improves robustness and downstream transfer, particularly for contrastive and distillation-based methods.
+          </p>
+        </div>
+        <div class="finding-item">
+          <h4>Finding 3: Scaling Laws Hold in Sleep Data</h4>
+          <p>
+            Scaling laws emerge in sleep data; jointly scaling model and data size yields the strongest gains 
+            across diverse downstream tasks.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-header" style="margin-top: 2rem;">
+        <h2>Missing-Channel Inference</h2>
+      </div>
+      <figure class="figure-block">
+        <img src="./static/images/3_motiv.svg" alt="Missing Channel Inference">
+        <figcaption>Figure: Inference with full versus missing channels. Existing sleep FM fails on inference time missing channel samples.</figcaption>
+      </figure>
+
+      <div class="section-header" style="margin-top: 2rem;">
+        <h2>Channel-Invariant Pre-training</h2>
+      </div>
+      <figure class="figure-block">
+        <img src="./static/images/4_augmentation.svg" alt="Augmentation Strategies">
+        <figcaption>Figure: Illustration of considered augmentations. We consider time-wise masking and channel masking strategies.</figcaption>
+      </figure>
+
+      <div class="section-header" style="margin-top: 2rem;">
+        <h2>Scaling Behavior</h2>
+      </div>
+      <figure class="figure-block">
+        <img src="./static/images/model_scaling.svg" alt="Model Scaling">
+        <figcaption>Figure: Scaling behavior. Linear probing results on hypopnea detection show that OSF improves with both model capacity and pre-training sample size.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== Tab: Results ===== -->
+<div id="tab-results" class="tab-panel">
+
+  <section class="content-section first-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Experiment Results</h2>
+      </div>
+      <div class="content-card">
+        <p>
+          OSF is evaluated across nine datasets on diverse sleep staging and event detection tasks. 
+          It consistently achieves state-of-the-art performance under linear probing, few-shot learning, and fine-tuning settings.
+        </p>
+      </div>
+
+      <h3 class="grid-label">Task Types</h3>
+      <div class="results-grid three-col">
+        <div class="result-item purple">
+          <h4>Sleep Staging</h4>
+          <p>Best overall performance on multi-class sleep stage classification across diverse cohorts.</p>
+        </div>
+        <div class="result-item purple">
+          <h4>Event Detection</h4>
+          <p>Superior detection of sleep events including arousal, hypopnea, oxygen desaturation, and central apnea.</p>
+        </div>
+        <div class="result-item purple">
+          <h4>Disease Prediction</h4>
+          <p>Extracted embeddings better capture disease-related information.</p>
+        </div>
+      </div>
+
+      <h3 class="grid-label">Evaluation Settings</h3>
+      <div class="results-grid three-col">
+        <div class="result-item blue">
+          <h4>Linear Probing</h4>
+          <p>Strong performance with frozen features, demonstrating high-quality representations.</p>
+        </div>
+        <div class="result-item blue">
+          <h4>Fine-tuning</h4>
+          <p>Further gains when adapting to specific downstream tasks with full model training.</p>
+        </div>
+        <div class="result-item blue">
+          <h4>Few-shot Learning</h4>
+          <p>Sample efficiency in adapting to downstream tasks.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-header" style="margin-top: 2rem;">
+        <h2>Main Results</h2>
+      </div>
+      <figure class="figure-block">
+        <img src="./static/images/main_table.svg" alt="Main Results Table">
+        <figcaption>Table: Sleep staging and sleep event detection. OSF achieves the best overall performance among all compared methods.</figcaption>
+      </figure>
+      <div class="content-card">
+        <p>
+          We evaluate models on four sleep event detection tasks. As shown in the table,
+          OSF achieves state-of-the-art performance on both sleep staging and event detection under linear probing and fine-tuning.
+        </p>
+      </div>
+
+      <div class="section-header" style="margin-top: 2rem;">
+        <h2>Missing-Channel Robustness</h2>
+      </div>
+      <figure class="figure-block">
+        <img src="./static/images/missing_inference.svg" alt="Missing Channel Results">
+        <figcaption>Table: Linear probing results under realistic missing-channel settings. OSF is more robust to missing channels.</figcaption>
+      </figure>
+      <div class="content-card">
+        <p>
+          OSF consistently outperforms SleepFM across these missing-channel settings. 
+          Specifically, (1) OSF makes better use of the available channels.
+          With brain-activity channels only, it achieves stronger sleep staging and arousal detection, 
+          suggesting stronger brain-related representations. 
+          Similarly, with respiratory channels only, it achieves stronger performance on hypopnea and oxygen desaturation.
+        </p>
+        <p>
+          (2) OSF is more robust when key modalities are missing. When respiratory signals are removed, 
+          both methods degrade on hypopnea and oxygen desaturation, but OSF remains consistently better. 
+          Conversely, when brain-related channels are unavailable, sleep staging becomes much harder for both models; 
+          nevertheless, OSF better uses the remaining channels and yields stronger performance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== Tab: Citation ===== -->
+<div id="tab-citation" class="tab-panel">
+
+  <section class="content-section first-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>BibTeX</h2>
+      </div>
+      <pre class="bibtex-block"><code>@article{shuai2026osf,
+  title={OSF: On Pre-training and Scaling of Sleep Foundation Models},
+  author={Shuai, Zitao and Xu, Zongzhe and Yang, David and Wang, Wei and Yang, Yuzhe},
+  journal={arXiv preprint arXiv:2603.00190},
+  year={2026}
+}</code></pre>
+    </div>
+  </section>
+
+</div>
+
+
+
+<script defer src="./static/js/fontawesome.all.min.js"></script>
+<script src="./static/js/index.js"></script>
+</body>
+</html>
