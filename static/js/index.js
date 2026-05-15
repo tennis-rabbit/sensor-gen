@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   var hash = window.location.hash.replace('#', '');
-  var validTabs = ['home', 'findings', 'results', 'citation'];
+  var validTabs = ['home', 'benchmark', 'findings', 'results', 'analysis', 'citation'];
   if (hash && validTabs.indexOf(hash) !== -1) {
     switchTab(hash);
   }

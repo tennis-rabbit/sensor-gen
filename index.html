@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="OSF: On Pre-training and Scaling of Sleep Foundation Models">
-  <meta name="keywords" content="Foundation Model, Polysomnography, Self-Supervised Learning, Sleep">
+  <meta name="description" content="SensorGen: Understanding Generative Models for Real-World Sensor Time Series">
+  <meta name="keywords" content="Sensor Time Series, Generative Models, Diffusion Models, Flow Matching, Healthcare AI">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OSF: On Pre-training and Scaling of Sleep Foundation Models</title>
+  <title>SensorGen: Generative Models for Real-World Sensor Time Series</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -15,66 +15,51 @@
 </head>
 <body>
 
-<!-- ===== Navigation ===== -->
 <nav class="site-nav">
   <div class="nav-inner">
-    <a href="#" class="nav-brand" data-tab="home"><span>Open Sleep Foundation Model</span></a>
-    <button class="nav-toggle" aria-label="Menu">
-      <i class="fas fa-bars"></i>
-    </button>
+    <a href="#" class="nav-brand" data-tab="home"><span>SensorGen</span></a>
+    <button class="nav-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
     <ul class="nav-links">
       <li><a href="#" class="active" data-tab="home">Home</a></li>
+      <li><a href="#" data-tab="benchmark">Benchmark</a></li>
       <li><a href="#" data-tab="findings">Findings</a></li>
       <li><a href="#" data-tab="results">Results</a></li>
+      <li><a href="#" data-tab="analysis">Analysis</a></li>
       <li><a href="#" data-tab="citation">Cite</a></li>
       <li class="nav-dropdown">
         <a href="#" class="dropdown-trigger">More Work <i class="fas fa-caret-down"></i></a>
         <ul class="dropdown-menu">
           <li><a href="https://yang-ai-lab.github.io/SleepLM/" target="_blank">SleepLM: Natural-Language Intelligence for Human Sleep</a></li>
-          <li><a href="https://yang-ai-lab.github.io/HEARTS/" target="_blank">LLM Reasoning on Health Time-Series</a></li>
+          <li><a href="https://yang-ai-lab.github.io/HEARTS/" target="_blank">HEARTS: LLM Reasoning on Health Time-Series</a></li>
         </ul>
       </li>
     </ul>
   </div>
 </nav>
 
-<!-- ===== Tab: Home ===== -->
 <div id="tab-home" class="tab-panel active">
-
   <section class="hero-section">
     <div class="section-inner">
       <div class="hero-title">
-        <h1>OSF: On Pre-training and Scaling of Sleep Foundation Models</h1>
+        <h1>Signal or Noise? Understanding Generative Models for Real-World Sensor Time Series</h1>
         <div class="authors">
-          <span class="author-block"><a href="https://zitao-shuai.github.io/">Zitao Shuai</a><sup>1</sup>,</span>
-          <span class="author-block"><a href="https://github.com/Zongzhe-Xu/">Zongzhe Xu</a><sup>1</sup>,</span>
-          <span class="author-block"><a href="https://sites.google.com/view/daviddongjunyang">David Yang</a><sup>2</sup>,</span>
-          <span class="author-block"><a href="https://web.cs.ucla.edu/~weiwang/">Wei Wang</a><sup>1</sup>,</span>
-          <span class="author-block"><a href="https://web.cs.ucla.edu/~yuzhe/">Yuzhe Yang</a><sup>1</sup></span>
+          <span class="author-block"><a href="https://zitao-shuai.github.io/">Zitao Shuai</a><sup>1*</sup>,</span>
+          <span class="author-block"><a href="https://github.com/Zongzhe-Xu/">Zongzhe Xu</a><sup>1*</sup>,</span>
+          <span class="author-block">Yuntian Wu<sup>2*</sup>,</span>
+          <span class="author-block">Sirui Li<sup>1</sup>,</span>
+          <span class="author-block">Tianhong Li<sup>3</sup>,</span>
+          <span class="author-block"><a href="https://web.cs.ucla.edu/~yuzhe/">Yuzhe Yang</a><sup>1&dagger;</sup></span>
         </div>
         <div class="affiliation">
           <sup>1</sup>University of California, Los Angeles &nbsp;&nbsp;
-          <sup>2</sup>Emory University
+          <sup>2</sup>Carnegie Mellon University &nbsp;&nbsp;
+          <sup>3</sup>Massachusetts Institute of Technology
+          <br><sup>*</sup>Equal contribution &nbsp;&nbsp; <sup>&dagger;</sup>Corresponding author
         </div>
-
         <div class="link-buttons">
-          <a href="https://huggingface.co/yang-ai-lab/OSF-Base" target="_blank">
-            <span class="icon"><i class="fas fa-cube"></i></span>
-            Hugging Face
-          </a>
-          <a href="https://github.com/yang-ai-lab/OSF-Open-Sleep-FM" target="_blank">
-            <span class="icon"><i class="fab fa-github"></i></span>
-            Code
-          </a>
-          
-                <a href="https://arxiv.org/pdf/2603.00190"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              
+          <a href="#" class="btn-disabled"><span class="icon"><i class="ai ai-arxiv"></i></span>Paper Coming Soon</a>
+          <a href="#" class="btn-disabled"><span class="icon"><i class="fab fa-github"></i></span>Code Placeholder</a>
+          <a href="#" class="btn-disabled"><span class="icon"><i class="fas fa-database"></i></span>Dataset Placeholder</a>
         </div>
       </div>
     </div>
@@ -83,9 +68,11 @@
   <section class="content-section">
     <div class="section-inner">
       <div class="teaser-block">
-        <video src="./static/videos/website_gif.mp4" autoplay loop muted playsinline alt="OSF Demo"></video>
+        <div class="content-card">
+          <p><strong>Figure placeholder.</strong> Replace this card with the main SensorGen overview figure from the paper.</p>
+        </div>
         <p class="teaser-caption">
-          We identify three critical insights for building sleep foundation models, and our pre-trained OSF consistently achieves state-of-the-art performance on diverse downstream sleep tasks.
+          SensorGen studies when, how, and why generative models succeed or fail across real-world sensor time-series generation settings.
         </p>
       </div>
 
@@ -93,49 +80,20 @@
         <h2><i class="fas fa-bullhorn" style="font-size: 0.85em; margin-right: 0.4rem; color: var(--sky);"></i>News</h2>
       </div>
       <div class="news-list">
-        <div class="news-item">
-          <span class="news-date">2026-03-12</span>
-          <span class="news-text">Our arxiv paper is out!</span>
-        </div>
-        <div class="news-item">
-          <span class="news-date">2026-02-23</span>
-          <span class="news-text">Project website is live!</span>
-        </div>
-        <div class="news-item">
-          <span class="news-date">2026-02-23</span>
-          <span class="news-text">Code released on <a href="https://github.com/yang-ai-lab/OSF-Open-Sleep-Foundation-Model" target="_blank">GitHub</a>.</span>
-        </div>
+        <div class="news-item"><span class="news-date">TODO</span><span class="news-text">Paper link will be added after release.</span></div>
+        <div class="news-item"><span class="news-date">TODO</span><span class="news-text">Code and data release links will be added here.</span></div>
+        <div class="news-item"><span class="news-date">2026</span><span class="news-text">Project website sprint version is live.</span></div>
       </div>
     </div>
   </section>
 
   <section class="content-section">
     <div class="section-inner">
-      <div class="section-header">
-        <h2>Abstract</h2>
-      </div>
+      <div class="section-header"><h2>Abstract</h2></div>
       <div class="content-card">
-        <p>
-          Polysomnography (PSG) provides the gold standard for sleep assessment 
-          but suffers from substantial heterogeneity across recording devices and cohorts. 
-          There have been growing efforts to build general-purpose foundation models (FMs) for sleep physiology, 
-          but lack an in-depth understanding of the pre-training process and scaling patterns that lead to more generalizable sleep FMs.
-        </p>
-        <p>
-          To fill this gap, we curate a massive corpus of 166,500 hours of sleep recordings 
-          from nine public sources and establish SleepBench, a comprehensive, fully open-source benchmark. 
-          Leveraging SleepBench, we systematically evaluate four families of self-supervised pre-training objectives
-          and uncover three critical findings: (1) existing FMs fail to generalize to missing channels at inference; 
-          (2) channel-invariant feature learning is essential for pre-training; 
-          and (3) scaling sample size, model capacity, and multi-source data mixture consistently improves downstream performance.
-        </p>
-        <p>
-          With an enhanced pre-training and scaling recipe, we introduce OSF, 
-          a family of sleep FMs that achieves state-of-the-art performance across nine datasets
-          on diverse sleep and disease prediction tasks. 
-          Further analysis of OSF also reveals intriguing properties in sample efficiency, hierarchical aggregation, 
-          and cross-dataset scaling.
-        </p>
+        <p>Generative models have changed how machine learning represents complex data distributions, especially in language and vision, yet many real-world systems are observed instead as continuous, high-dimensional, and noisy <strong>sensor time series</strong>.</p>
+        <p>Existing generative modeling of sensor data remains fragmented across modalities, datasets, and task formulations. To address this gap, we introduce <strong>SensorGen</strong>, a large-scale study of sensor-signal generation spanning <strong>14 settings</strong> across <strong>4 domains</strong>, <strong>7 datasets</strong>, and <strong>12 signal modalities</strong>.</p>
+        <p>Leveraging SensorGen, we evaluate generative models from five major families and uncover three key findings: flow-matching models provide strong overall performance, signal properties shape which designs work, and generated signals have practical utility beyond visual realism.</p>
       </div>
     </div>
   </section>
@@ -144,204 +102,151 @@
 
   <section class="content-section">
     <div class="section-inner">
-      <div class="section-header">
-        <h2>Motivation</h2>
-      </div>
+      <div class="section-header"><h2>Motivation</h2></div>
       <div class="content-card">
-        <p>
-          <strong>Which pre-training and scaling design choices truly improve the generalization of sleep FMs, 
-          especially under cohort shift and missing-channel inference?</strong>
-        </p>
-        <p>
-          Existing sleep FMs differ in their pre-training objectives, 
-          but it is unclear which of these choices reliably improve downstream performance across cohorts, 
-          devices, and channel sets. 
-        </p>
+        <p><strong>When, how, and why do generative models succeed or fail across diverse sensor time series generation settings?</strong></p>
+        <p>Sensor signals vary widely in sampling frequency, time span, sequence length, channel structure, and physical semantics. These properties make direct adaptation from image or language generation non-trivial.</p>
       </div>
     </div>
   </section>
-
 </div>
 
-<!-- ===== Tab: Findings ===== -->
-<div id="tab-findings" class="tab-panel">
-
+<div id="tab-benchmark" class="tab-panel">
   <section class="content-section first-section">
     <div class="section-inner">
-      <div class="section-header">
-        <h2>Key Findings</h2>
-      </div>
+      <div class="section-header"><h2>SensorGen Benchmark</h2></div>
       <div class="content-card">
-        <p>
-          Through systematic evaluation on SleepBench, we uncover three critical insights 
-          that guide the design of more robust and generalizable sleep foundation models.
-        </p>
+        <p>SensorGen bridges the fragmented landscape of sensor time-series generation into a unified study platform. It studies generation as a joint problem over task formulations, sensing domains, signal properties, and model families.</p>
+      </div>
+
+      <h3 class="grid-label">Coverage</h3>
+      <div class="results-grid three-col">
+        <div class="result-item purple"><h4>14 Generation Settings</h4><p>Tasks are standardized under shared construction, training, and evaluation pipelines.</p></div>
+        <div class="result-item purple"><h4>4 Real-World Domains</h4><p>Emergency department, daily-life sensing, laboratory studies, and operation-room monitoring.</p></div>
+        <div class="result-item purple"><h4>12 Signal Modalities</h4><p>Bioelectrical, optical, motion, waveform, intervention, and longitudinal metabolic signals.</p></div>
+      </div>
+
+      <h3 class="grid-label">Data Regimes</h3>
+      <div class="finding-components">
+        <div class="finding-item"><h4>Emergency Department</h4><p>MIMIC-IV ECG provides clinical 12-lead electrocardiogram recordings paired with diagnostic reports.</p></div>
+        <div class="finding-item"><h4>Daily Life</h4><p>CAPTURE-24, PPG-DaLiA, and Metabonet cover free-living wrist accelerometry, wearable physiological signals, and longitudinal metabolic traces.</p></div>
+        <div class="finding-item"><h4>Lab Study</h4><p>PhyMER and SHHS provide controlled affective-state recordings and overnight polysomnography.</p></div>
+        <div class="finding-item"><h4>Operation Room</h4><p>VitalDB provides intra-operative physiological waveforms, medication records, arterial blood pressure, PPG, ECG, and NIBP-derived measurements.</p></div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-header" style="margin-top: 2rem;"><h2>Task Taxonomy</h2></div>
+      <div class="results-grid">
+        <div class="result-item blue"><h4>Semantic-to-Signal</h4><p>Generate realistic and semantically consistent signals from text, labels, or metadata.</p></div>
+        <div class="result-item blue"><h4>Interpolation &amp; Extrapolation</h4><p>Predict future segments or reconstruct temporally incomplete signals from observed context.</p></div>
+        <div class="result-item blue"><h4>Translation</h4><p>Generate missing or hard-to-acquire target channels from accessible source channels.</p></div>
+        <div class="result-item blue"><h4>Editing</h4><p>Restore, refine, or counterfactually modify existing recordings while preserving non-target attributes.</p></div>
+      </div>
+
+      <div class="content-card">
+        <p><strong>Figure placeholder.</strong> Replace this card with task coverage and domain coverage figures once exported from the paper source.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="tab-findings" class="tab-panel">
+  <section class="content-section first-section">
+    <div class="section-inner">
+      <div class="section-header"><h2>Key Findings</h2></div>
+      <div class="content-card">
+        <p>SensorGen evaluates six representative models from five major generative families: diffusion, flow matching, autoregressive modeling, normalizing flows, and hierarchical generation.</p>
       </div>
 
       <div class="finding-components">
-        <div class="finding-item">
-          <h4>Finding 1: Missing-Channel Inference is Challenging</h4>
-          <p>
-            Existing sleep FMs fail to generalize under missing-channel inference, 
-            motivating pre-training designs that explicitly handle channel incompleteness.
-          </p>
-        </div>
-        <div class="finding-item">
-          <h4>Finding 2: Channel-Invariant Pre-training Improves Robustness</h4>
-          <p>
-            Explicitly encouraging channel-invariant feature learning during pre-training 
-            improves robustness and downstream transfer, particularly for contrastive and distillation-based methods.
-          </p>
-        </div>
-        <div class="finding-item">
-          <h4>Finding 3: Scaling Laws Hold in Sleep Data</h4>
-          <p>
-            Scaling laws emerge in sleep data; jointly scaling model and data size yields the strongest gains 
-            across diverse downstream tasks.
-          </p>
-        </div>
+        <div class="finding-item"><h4>Finding 1: Flow Matching Is a Strong Default</h4><p>Flow-matching models provide strong overall performance across most sensor generation settings, making SiT a reliable baseline for heterogeneous sensor-signal generation.</p></div>
+        <div class="finding-item"><h4>Finding 2: Signal Properties Matter</h4><p>Demographic covariates help longitudinal generation only when encoded carefully, while time-frequency modeling improves high-frequency signal generation.</p></div>
+        <div class="finding-item"><h4>Finding 3: Generated Signals Are Useful Beyond Realism</h4><p>Synthetic sensor signals can improve downstream performance under data scarcity, and generation quality improves with additional training compute and model capacity.</p></div>
+        <div class="finding-item"><h4>Finding 4: Evaluation Must Reflect Sensor Structure</h4><p>Visually plausible waveforms may still miss temporal, spectral, or physiological structure, motivating paired, distribution-level, and downstream utility evaluations.</p></div>
       </div>
 
       <div class="section-divider"></div>
 
-      <div class="section-header" style="margin-top: 2rem;">
-        <h2>Missing-Channel Inference</h2>
+      <div class="section-header" style="margin-top: 2rem;"><h2>Model Families</h2></div>
+      <div class="results-grid three-col">
+        <div class="result-item blue"><h4>Diffusion</h4><p>Iterative denoising from noise to data, instantiated with DiT.</p></div>
+        <div class="result-item blue"><h4>Flow Matching</h4><p>Continuous transport from noise to data, instantiated with SiT.</p></div>
+        <div class="result-item blue"><h4>Autoregressive</h4><p>Sequential token generation, instantiated with MAR.</p></div>
+        <div class="result-item blue"><h4>Normalizing Flows</h4><p>Likelihood-based generation through invertible transformations, instantiated with TarFlow.</p></div>
+        <div class="result-item blue"><h4>Hierarchical</h4><p>Multi-scale or coarse-to-fine synthesis, instantiated with FractalGen and Imagen.</p></div>
+        <div class="result-item blue"><h4>Unified Protocol</h4><p>Models are compared under shared task definitions, preprocessing, data splits, and evaluation protocols.</p></div>
       </div>
-      <figure class="figure-block">
-        <img src="./static/images/3_motiv.svg" alt="Missing Channel Inference">
-        <figcaption>Figure: Inference with full versus missing channels. Existing sleep FM fails on inference time missing channel samples.</figcaption>
-      </figure>
-
-      <div class="section-header" style="margin-top: 2rem;">
-        <h2>Channel-Invariant Pre-training</h2>
-      </div>
-      <figure class="figure-block">
-        <img src="./static/images/4_augmentation.svg" alt="Augmentation Strategies">
-        <figcaption>Figure: Illustration of considered augmentations. We consider time-wise masking and channel masking strategies.</figcaption>
-      </figure>
-
-      <div class="section-header" style="margin-top: 2rem;">
-        <h2>Scaling Behavior</h2>
-      </div>
-      <figure class="figure-block">
-        <img src="./static/images/model_scaling.svg" alt="Model Scaling">
-        <figcaption>Figure: Scaling behavior. Linear probing results on hypopnea detection show that OSF improves with both model capacity and pre-training sample size.</figcaption>
-      </figure>
     </div>
   </section>
-
 </div>
 
-<!-- ===== Tab: Results ===== -->
 <div id="tab-results" class="tab-panel">
-
   <section class="content-section first-section">
     <div class="section-inner">
-      <div class="section-header">
-        <h2>Experiment Results</h2>
-      </div>
+      <div class="section-header"><h2>Main Results</h2></div>
       <div class="content-card">
-        <p>
-          OSF is evaluated across nine datasets on diverse sleep staging and event detection tasks. 
-          It consistently achieves state-of-the-art performance under linear probing, few-shot learning, and fine-tuning settings.
-        </p>
+        <p>All methods share unified task definitions, preprocessing pipelines, and data splits. For each method and setting, SensorGen generates 1,024 samples from held-out test conditions and reports task-specific metrics.</p>
       </div>
 
-      <h3 class="grid-label">Task Types</h3>
-      <div class="results-grid three-col">
-        <div class="result-item purple">
-          <h4>Sleep Staging</h4>
-          <p>Best overall performance on multi-class sleep stage classification across diverse cohorts.</p>
-        </div>
-        <div class="result-item purple">
-          <h4>Event Detection</h4>
-          <p>Superior detection of sleep events including arousal, hypopnea, oxygen desaturation, and central apnea.</p>
-        </div>
-        <div class="result-item purple">
-          <h4>Disease Prediction</h4>
-          <p>Extracted embeddings better capture disease-related information.</p>
-        </div>
+      <h3 class="grid-label">Aggregate Trends</h3>
+      <div class="results-grid">
+        <div class="result-item purple"><h4>Semantic-to-Signal</h4><p>SiT achieves the best precision and recall, while DiT obtains the best aggregate FID in the current table.</p></div>
+        <div class="result-item purple"><h4>Translation</h4><p>SiT achieves the best aggregate MSE, MAE, SMSE, PSNR, and SSIM across translation tasks.</p></div>
+        <div class="result-item purple"><h4>Interpolation &amp; Extrapolation</h4><p>SiT is strongest across aggregate paired-generation metrics, suggesting robust conditional generation.</p></div>
+        <div class="result-item purple"><h4>Editing</h4><p>Editing is more setting-dependent: Imagen is strong in training-required editing, while SiT performs best in training-free editing.</p></div>
       </div>
 
-      <h3 class="grid-label">Evaluation Settings</h3>
-      <div class="results-grid three-col">
-        <div class="result-item blue">
-          <h4>Linear Probing</h4>
-          <p>Strong performance with frozen features, demonstrating high-quality representations.</p>
-        </div>
-        <div class="result-item blue">
-          <h4>Fine-tuning</h4>
-          <p>Further gains when adapting to specific downstream tasks with full model training.</p>
-        </div>
-        <div class="result-item blue">
-          <h4>Few-shot Learning</h4>
-          <p>Sample efficiency in adapting to downstream tasks.</p>
-        </div>
+      <div class="content-card">
+        <p><strong>Table placeholder.</strong> Replace this card with exported main result tables for semantic-to-signal, translation, interpolation/extrapolation, and editing.</p>
       </div>
 
       <div class="section-divider"></div>
 
-      <div class="section-header" style="margin-top: 2rem;">
-        <h2>Main Results</h2>
-      </div>
-      <figure class="figure-block">
-        <img src="./static/images/main_table.svg" alt="Main Results Table">
-        <figcaption>Table: Sleep staging and sleep event detection. OSF achieves the best overall performance among all compared methods.</figcaption>
-      </figure>
+      <div class="section-header" style="margin-top: 2rem;"><h2>Qualitative Results</h2></div>
       <div class="content-card">
-        <p>
-          We evaluate models on four sleep event detection tasks. As shown in the table,
-          OSF achieves state-of-the-art performance on both sleep staging and event detection under linear probing and fine-tuning.
-        </p>
-      </div>
-
-      <div class="section-header" style="margin-top: 2rem;">
-        <h2>Missing-Channel Robustness</h2>
-      </div>
-      <figure class="figure-block">
-        <img src="./static/images/missing_inference.svg" alt="Missing Channel Results">
-        <figcaption>Table: Linear probing results under realistic missing-channel settings. OSF is more robust to missing channels.</figcaption>
-      </figure>
-      <div class="content-card">
-        <p>
-          OSF consistently outperforms SleepFM across these missing-channel settings. 
-          Specifically, (1) OSF makes better use of the available channels.
-          With brain-activity channels only, it achieves stronger sleep staging and arousal detection, 
-          suggesting stronger brain-related representations. 
-          Similarly, with respiratory channels only, it achieves stronger performance on hypopnea and oxygen desaturation.
-        </p>
-        <p>
-          (2) OSF is more robust when key modalities are missing. When respiratory signals are removed, 
-          both methods degrade on hypopnea and oxygen desaturation, but OSF remains consistently better. 
-          Conversely, when brain-related channels are unavailable, sleep staging becomes much harder for both models; 
-          nevertheless, OSF better uses the remaining channels and yields stronger performance.
-        </p>
+        <p><strong>Figure placeholder.</strong> Replace this card with generated signal examples, such as glucose signal translation, showing input signals, ground truth, and generated target signals.</p>
       </div>
     </div>
   </section>
-
 </div>
 
-<!-- ===== Tab: Citation ===== -->
-<div id="tab-citation" class="tab-panel">
-
+<div id="tab-analysis" class="tab-panel">
   <section class="content-section first-section">
     <div class="section-inner">
-      <div class="section-header">
-        <h2>BibTeX</h2>
+      <div class="section-header"><h2>Analysis Study</h2></div>
+      <div class="content-card">
+        <p>This section separates deeper diagnostic studies from the main benchmark results. It focuses on downstream utility, sensor-specific design choices, scaling behavior, and failure modes.</p>
       </div>
-      <pre class="bibtex-block"><code>@article{shuai2026osf,
-  title={OSF: On Pre-training and Scaling of Sleep Foundation Models},
-  author={Shuai, Zitao and Xu, Zongzhe and Yang, David and Wang, Wei and Yang, Yuzhe},
-  journal={arXiv preprint arXiv:2603.00190},
+
+      <div class="finding-components">
+        <div class="finding-item"><h4>Synthetic Data Utility</h4><p>Synthetic ECG signals improve ECG-text pre-training transfer and supervised disease prediction under moderate augmentation. Excessive synthetic augmentation can degrade performance, likely due to generator artifacts or repeated patterns.</p></div>
+        <div class="finding-item"><h4>Demographic Conditioning</h4><p>Raw demographic attributes can hurt longitudinal glucose generation, while normalized demographic covariates improve performance over the no-demographic baseline.</p></div>
+        <div class="finding-item"><h4>Long-Sequence Generation</h4><p>Long sensor sequences are harder when generation depends only on semantic conditions, but target-signal context in imputation and translation can anchor generation.</p></div>
+        <div class="finding-item"><h4>High-Frequency Modeling</h4><p>High-frequency signals such as EEG require spectral fidelity. Time-frequency modeling with STFT spectrograms improves high-frequency channel generation.</p></div>
+        <div class="finding-item"><h4>Normalization and Scaling</h4><p>Range-based normalization provides a more stable target than z-score normalization in noisy physiological settings, and generation quality improves with training compute and model capacity.</p></div>
+      </div>
+
+      <div class="content-card">
+        <p><strong>Analysis figure placeholder.</strong> Replace this card with the synthetic data utility, spectrogram ablation, normalization, and scaling panels.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="tab-citation" class="tab-panel">
+  <section class="content-section first-section">
+    <div class="section-inner">
+      <div class="section-header"><h2>BibTeX</h2></div>
+      <pre class="bibtex-block"><code>@article{shuai2026sensorgen,
+  title={Signal or Noise? Understanding Generative Models for Real-World Sensor Time Series},
+  author={Shuai, Zitao and Xu, Zongzhe and Wu, Yuntian and Li, Sirui and Li, Tianhong and Yang, Yuzhe},
+  journal={TODO},
   year={2026}
 }</code></pre>
     </div>
   </section>
-
 </div>
-
-
 
 <script defer src="./static/js/fontawesome.all.min.js"></script>
 <script src="./static/js/index.js"></script>
