@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="SensorGen: A large-scale study of generative models for real-world sensor time series — 14 settings, 4 domains, 7 datasets, 12 modalities, 5 model families.">
+  <meta name="keywords" content="Sensor Time Series, Generative Models, Diffusion Models, Flow Matching, Healthcare AI, Benchmark">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SensorGen — Signal or Noise? Generative Models for Real-World Sensor Time Series</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-brand"><span>SensorGen</span></a>
+    <button class="nav-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links">
+      <li><a href="#overview" data-section="overview">Overview</a></li>
+      <li><a href="#tasks" data-section="tasks">Tasks</a></li>
+      <li><a href="#findings" data-section="findings">Findings</a></li>
+      <li><a href="#resources" data-section="resources">Resources</a></li>
+      <li><a href="#cite" data-section="cite">Cite</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="dropdown-trigger">More Work <i class="fas fa-caret-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="https://yang-ai-lab.github.io/SleepLM/" target="_blank">SleepLM: Natural-Language Intelligence for Human Sleep</a></li>
+          <li><a href="https://yang-ai-lab.github.io/HEARTS/" target="_blank">HEARTS: LLM Reasoning on Health Time-Series</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================ HERO ============================ -->
+<header id="home" class="hero">
+  <div class="container hero-inner">
+    <h1 class="hero-title">Signal or Noise?</h1>
+    <p class="hero-subtitle">Understanding Generative Models for Real-World Sensor Time Series</p>
+
+    <div class="authors">
+      <span class="author-block"><a href="https://zitao-shuai.github.io/">Zitao Shuai</a><sup>1*</sup>,</span>
+      <span class="author-block"><a href="https://github.com/Zongzhe-Xu/">Zongzhe Xu</a><sup>1*</sup>,</span>
+      <span class="author-block"><a href="https://gitatrent.github.io/">Yuntian Wu</a><sup>2*</sup>,</span>
+      <span class="author-block">Sirui Li<sup>1</sup>,</span>
+      <span class="author-block"><a href="https://www.tianhongli.me/">Tianhong Li</a><sup>3</sup>,</span>
+      <span class="author-block"><a href="https://web.cs.ucla.edu/~yuzhe/">Yuzhe Yang</a><sup>1&dagger;</sup></span>
+    </div>
+    <div class="affiliation">
+      <sup>1</sup>University of California, Los Angeles &nbsp;&nbsp;
+      <sup>2</sup>Carnegie Mellon University &nbsp;&nbsp;
+      <sup>3</sup>Massachusetts Institute of Technology
+      <br><sup>*</sup>Equal contribution &nbsp;&nbsp; <sup>&dagger;</sup>Corresponding author
+    </div>
+
+    <div class="link-buttons">
+      <a href="https://arxiv.org/abs/2607.04245" target="_blank" rel="noopener noreferrer"><span class="icon"><i class="ai ai-arxiv"></i></span>Paper</a>
+      <a href="https://github.com/yang-ai-lab/SensorGen" target="_blank" rel="noopener noreferrer"><span class="icon"><i class="fab fa-github"></i></span>Code</a>
+      <a href="https://huggingface.co/yang-ai-lab/SensorGen-SiT" target="_blank" rel="noopener noreferrer"><span class="icon"><i class="fas fa-cube"></i></span>Models</a>
+    </div>
+
+    <p class="hero-tagline">
+      The first <strong>open, large-scale</strong> study of sensor-signal generation —
+      <strong>14 settings</strong> across <strong>4 domains</strong>, <strong>7 datasets</strong>, and
+      <strong>12 modalities</strong>, evaluating <strong>5 model families</strong> under one unified protocol.
+    </p>
+
+    <figure class="hero-figure">
+      <video class="hero-video" poster="./static/images/teaser_poster.png"
+             autoplay muted loop playsinline preload="auto"
+             aria-label="SensorGen overview animation: the four task categories with live generated sensor signals">
+        <source src="./static/videos/sensorgen_final.mp4" type="video/mp4">
+        <img src="./static/images/teaser.svg" alt="SensorGen overview: task categories, domains, modalities, model families, and signal coverage">
+      </video>
+    </figure>
+  </div>
+
+  <!-- ===== Stat strip ===== -->
+  <div class="container">
+    <div class="stat-strip">
+      <div class="stat"><span class="stat-num">14</span><span class="stat-label">Generation Settings</span></div>
+      <div class="stat"><span class="stat-num">4</span><span class="stat-label">Real-World Domains</span></div>
+      <div class="stat"><span class="stat-num">7</span><span class="stat-label">Datasets</span></div>
+      <div class="stat"><span class="stat-num">12</span><span class="stat-label">Signal Modalities</span></div>
+      <div class="stat"><span class="stat-num">5</span><span class="stat-label">Model Families</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ OVERVIEW (scale + vs prior work) ============================ -->
+<section id="overview" class="band">
+  <div class="container">
+    <p class="eyebrow">Why SensorGen</p>
+    <h2 class="section-title">The broadest open study of sensor-signal generation</h2>
+    <p class="section-lead">
+      Generative modeling of sensor signals has been <strong>fragmented</strong> across modalities, datasets, and
+      task formulations, with each method tuned to a single signal type. SensorGen consolidates this landscape into
+      one platform — shared data processing, task construction, training, and evaluation — so that model families,
+      signal properties, and design choices can finally be compared apples-to-apples.
+    </p>
+
+    <!-- vs prior work table -->
+    <figure class="table-figure">
+      <img src="./static/images/comparison_prior_work.svg" alt="Comparison of SensorGen against prior studies across model families and task types">
+      <figcaption>
+        SensorGen vs. prior work on sensor-signal generation. Earlier studies cover one domain and a single task
+        type; SensorGen is the first to span all four task categories and five model families at scale.
+      </figcaption>
+    </figure>
+
+    <!-- scale ranges -->
+    <h3 class="grid-label"><i class="fas fa-ruler-horizontal"></i>Signal Diversity &amp; Scale</h3>
+    <div class="range-chart" id="rangeChart">
+      <div class="range-row" data-axis="freq">
+        <div class="range-label"><h4>Sampling Frequency</h4><span class="range-span">0.0033&nbsp;Hz → 256&nbsp;Hz</span></div>
+        <div class="range-track"><span class="range-end lo"></span><span class="range-end hi"></span></div>
+      </div>
+      <div class="range-row" data-axis="seq">
+        <div class="range-label"><h4>Sequence Length</h4><span class="range-span">10<sup>2</sup> → 10<sup>4</sup> steps</span></div>
+        <div class="range-track"><span class="range-end lo"></span><span class="range-end hi"></span></div>
+      </div>
+      <div class="range-row" data-axis="span">
+        <div class="range-label"><h4>Time Span</h4><span class="range-span">seconds → 7&nbsp;days</span></div>
+        <div class="range-track"><span class="range-end lo"></span><span class="range-end hi"></span></div>
+      </div>
+      <div class="range-legend" id="rangeLegend"></div>
+    </div>
+
+    <!-- data regimes -->
+    <h3 class="grid-label"><i class="fas fa-layer-group"></i>Four Real-World Data Regimes</h3>
+    <div class="card-grid two">
+      <div class="card domain-card">
+        <h4><i class="fas fa-ambulance"></i> Emergency Department</h4>
+        <p>MIMIC-IV ECG — clinical 12-lead electrocardiograms paired with diagnostic reports.</p>
+      </div>
+      <div class="card domain-card">
+        <h4><i class="fas fa-walking"></i> Daily Life</h4>
+        <p>CAPTURE-24, PPG-DaLiA, Metabonet — free-living accelerometry, wearable physiology, and longitudinal metabolic traces.</p>
+      </div>
+      <div class="card domain-card">
+        <h4><i class="fas fa-flask"></i> Lab Study</h4>
+        <p>PhyMER, SHHS — controlled affective-state recordings and overnight polysomnography (EEG, ECG, EMG, EOG).</p>
+      </div>
+      <div class="card domain-card">
+        <h4><i class="fas fa-heartbeat"></i> Operation Room</h4>
+        <p>VitalDB — intra-operative waveforms, medication records, arterial blood pressure, PPG, ECG, and NIBP.</p>
+      </div>
+    </div>
+
+    <!-- interactive modality grid -->
+    <h3 class="grid-label"><i class="fas fa-wave-square"></i>Signal Modalities</h3>
+    <div class="mod-panel">
+      <div class="mod-toggle" role="tablist">
+        <button class="mod-tab active" data-view="modality" type="button">By Modality</button>
+        <button class="mod-tab" data-view="domain" type="button">By Domain</button>
+      </div>
+      <div class="mod-body" id="modBody"></div>
+      <div class="mod-detail" id="modDetail" hidden></div>
+      <p class="mod-hint">Click an icon to see where each modality appears.</p>
+    </div>
+
+    <!-- data overview table — temporarily hidden, re-enable when ready
+    <figure class="table-figure">
+      <img src="./static/images/data_overview.svg" alt="Overview and statistics of the seven datasets used in SensorGen">
+      <figcaption>
+        Datasets, domains, modalities, subjects, sampling rates, and train/test window counts — spanning millions of
+        windows across the seven sources.
+      </figcaption>
+    </figure>
+    -->
+
+    <p class="section-note">
+      These settings are organized into <strong>4 task categories</strong> and <strong>14 concrete settings</strong>.
+      <a href="#tasks" class="inline-link">See the task design&nbsp;&rarr;</a>
+    </p>
+  </div>
+</section>
+
+<!-- ============================ TASKS (task design) ============================ -->
+<section id="tasks" class="band alt">
+  <div class="container">
+    <p class="eyebrow">Task Design</p>
+    <h2 class="section-title">One generation interface, four task categories</h2>
+    <p class="section-lead">
+      We cast every task as conditional generation
+      <span class="formula">x&#770; &sim; p<sub>&theta;</sub>(x | C), &nbsp; C &sube; {c<sub>1</sub>, c<sub>2</sub>}</span>,
+      where <strong>c<sub>1</sub></strong> is a semantic condition (text, labels, metadata) and
+      <strong>c<sub>2</sub></strong> is observed signal context (history, source channels). Each setting is built from a
+      real sensing bottleneck and validated for clinical grounding, application value, and generative suitability.
+    </p>
+
+    <div class="card-grid two">
+      <div class="card task-card" data-cat="s2s" role="button" tabindex="0">
+        <span class="task-icon"><i class="fas fa-font"></i></span>
+        <h4>Semantic-to-Signal</h4>
+        <p>Generate realistic, semantically consistent signals from text, labels, or metadata.</p>
+        <ul class="task-fams">
+          <li>Text-to-Signal Generation</li>
+          <li>Label-Conditioned Generation</li>
+        </ul>
+      </div>
+      <div class="card task-card" data-cat="interp" role="button" tabindex="0">
+        <span class="task-icon"><i class="fas fa-chart-line"></i></span>
+        <h4>Interpolation &amp; Extrapolation</h4>
+        <p>Predict future segments or reconstruct missing spans from observed temporal context.</p>
+        <ul class="task-fams">
+          <li>Future Forecasting</li>
+          <li>Intervention-Conditioned Forecasting</li>
+          <li>Temporal Imputation</li>
+        </ul>
+      </div>
+      <div class="card task-card" data-cat="trans" role="button" tabindex="0">
+        <span class="task-icon"><i class="fas fa-exchange-alt"></i></span>
+        <h4>Translation</h4>
+        <p>Generate missing or hard-to-acquire target channels from accessible source channels.</p>
+        <ul class="task-fams">
+          <li>Signal Translation</li>
+          <li>Proxy-to-Target Reconstruction</li>
+        </ul>
+      </div>
+      <div class="card task-card" data-cat="edit" role="button" tabindex="0">
+        <span class="task-icon"><i class="fas fa-pen-nib"></i></span>
+        <h4>Editing</h4>
+        <p>Restore, refine, or selectively modify recordings while preserving non-target attributes.</p>
+        <ul class="task-fams">
+          <li>Super-Resolution</li>
+          <li>Denoising</li>
+          <li>Semantic Signal Editing</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="figure-card feature-figure wide">
+      <img src="./static/images/task_setting_v44.png" alt="Task taxonomy: how each setting instantiates the conditional-generation interface">
+      <figcaption>Each setting instantiates the same <span class="formula-sm">x&#770; &sim; p<sub>&theta;</sub>(x | C)</span> interface — only the role of the conditions changes.</figcaption>
+    </figure>
+
+    <h3 class="grid-label"><i class="fas fa-chart-bar"></i>Coverage</h3>
+    <div class="coverage" id="coverage">
+      <div class="cov-toggle" role="tablist">
+        <button class="cov-tab active" data-view="cat" type="button">By Task Category</button>
+        <button class="cov-tab" data-view="dom" type="button">By Domain</button>
+      </div>
+      <div class="cov-list" id="covBody"></div>
+      <p class="cov-hint">Bars are sized by the number of available samples. Click a category to see its settings.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FINDINGS (unified: results + analysis) ============================ -->
+<section id="findings" class="band">
+  <div class="container">
+    <p class="eyebrow">What the Study Reveals</p>
+    <h2 class="section-title">Findings</h2>
+    <p class="section-lead">
+      Rather than crowning a single best model, SensorGen turns a fragmented field into evidence. Each takeaway below
+      is grounded in the benchmark and paired with the table or figure that supports it — practical lessons for
+      <em>building</em> and <em>evaluating</em> sensor generators.
+    </p>
+
+    <!-- ===== Theme 1: model paradigm ===== -->
+    <h3 class="theme-head"><span class="theme-num">01</span><i class="fas fa-microchip"></i> Which generative paradigm transfers best?</h3>
+
+    <div class="feature-row">
+      <div class="feature-body">
+        <div class="takeaway-badge"><i class="fas fa-wave-square"></i> Takeaway 1</div>
+        <h4>Flow matching is the strongest default across tasks.</h4>
+        <p>
+          Across all four categories, <strong>SiT</strong> (flow matching) gives the best aggregate performance —
+          best precision/recall on semantic-to-signal, and best MSE/MAE/PSNR/SMSE/SSIM on translation and
+          interpolation/extrapolation. No single method wins everywhere, but flow matching is the reliable baseline
+          for heterogeneous sensor generation.
+        </p>
+      </div>
+      <div class="feature-media stacked">
+        <figure class="figure-card">
+          <img src="./static/images/results_semantic_editing.svg" alt="Aggregate results for semantic-to-signal and editing">
+          <figcaption>Aggregate results — Semantic-to-Signal &amp; Editing.</figcaption>
+        </figure>
+        <figure class="figure-card">
+          <img src="./static/images/results_translation_interpextrap.svg" alt="Aggregate results for translation and interpolation/extrapolation">
+          <figcaption>Aggregate results — Translation &amp; Interpolation/Extrapolation.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ===== Theme 2: signal properties ===== -->
+    <h3 class="theme-head"><span class="theme-num">02</span><i class="fas fa-fingerprint"></i> What signal properties matter?</h3>
+
+    <div class="feature-row reverse">
+      <div class="feature-body">
+        <div class="takeaway-badge"><i class="fas fa-ruler-horizontal"></i> Takeaway 2</div>
+        <h4>Target-signal context tames long-sequence generation.</h4>
+        <p>
+          Quality degrades as sequences grow for semantic-to-signal and translation, but stays stable for imputation:
+          surrounding observed segments anchor the missing region, so generation is far more tractable when
+          target-signal context is available.
+        </p>
+      </div>
+      <div class="feature-media">
+        <figure class="figure-card">
+          <img src="./static/images/analysis_long_sequence.svg" alt="Short vs long sequence generation across settings">
+          <figcaption>Short vs. long sequences across imputation, IMU generation, and PPG-to-ECG translation.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-body">
+        <div class="takeaway-badge"><i class="fas fa-chart-area"></i> Takeaway 3</div>
+        <h4>High-frequency signals need time-frequency modeling.</h4>
+        <p>
+          For high-frequency signals such as EEG, models reach high precision but low recall — plausible waveforms
+          that miss spectral variability. Adding an STFT spectrogram as a time-frequency conditioning signal improves
+          high-frequency channel fidelity.
+        </p>
+      </div>
+      <div class="feature-media">
+        <figure class="figure-card">
+          <img src="./static/images/analysis_spectrogram_ablation.svg" alt="Spectrogram conditioning for high-frequency generation">
+          <figcaption>Spectrogram conditioning improves high-frequency channel generation.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="feature-row reverse">
+      <div class="feature-body">
+        <div class="takeaway-badge"><i class="fas fa-id-card"></i> Takeaway 4</div>
+        <h4>Demographic covariates help — only when normalized.</h4>
+        <p>
+          Raw demographic attributes <em>hurt</em> longitudinal glucose generation (overfitting), but dataset-level
+          normalization flips them into a useful global context that beats the no-demographic baseline. Subject
+          metadata helps only when encoded in a properly normalized form.
+        </p>
+      </div>
+      <div class="feature-media">
+        <figure class="figure-card">
+          <img src="./static/images/analysis_demographic.svg" alt="Effect of demographic encoding on longitudinal generation">
+          <figcaption>Raw vs. normalized demographic conditioning on glucose generation.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-body">
+        <div class="takeaway-badge"><i class="fas fa-sliders-h"></i> Finding</div>
+        <h4>Fixed-range normalization is a more stable target.</h4>
+        <p>
+          z-score normalization can bias generation (e.g., upward-shifted targets in blood-pressure translation).
+          Range-based [&minus;1, 1] min-max normalization consistently improves quality across models — sensor
+          <em>generation</em> may need different normalization than sensor <em>representation</em> learning.
+        </p>
+      </div>
+      <div class="feature-media">
+        <figure class="figure-card">
+          <img src="./static/images/analysis_normalization.svg" alt="Range-based vs z-score normalization">
+          <figcaption>Range-based normalization outperforms z-score for sensor generation.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ===== Theme 3: utility beyond realism ===== -->
+    <h3 class="theme-head"><span class="theme-num">03</span><i class="fas fa-recycle"></i> Are generated signals useful beyond realism?</h3>
+
+    <div class="feature-row reverse">
+      <div class="feature-body">
+        <div class="takeaway-badge"><i class="fas fa-vials"></i> Finding</div>
+        <h4>Synthetic signals deliver downstream utility.</h4>
+        <p>
+          ECGs from a text-to-ECG generator improve both ECG-text pre-training transfer and supervised disease
+          classification under data scarcity. Moderate augmentation (~10%) helps most; excessive synthetic data can
+          amplify generator artifacts.
+        </p>
+      </div>
+      <div class="feature-media">
+        <figure class="figure-card">
+          <img src="./static/images/analysis_syn_data.svg" alt="Downstream utility of synthetic sensor signals">
+          <figcaption>Synthetic ECGs improve supervised classification and self-supervised transfer.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-body">
+        <div class="takeaway-badge"><i class="fas fa-chart-line"></i> Finding</div>
+        <h4>Sensor generators scale with compute and capacity.</h4>
+        <p>
+          On text-to-ECG, FID decreases consistently with more training steps, and larger models improve fidelity
+          further — sensor generation benefits from both compute and capacity scaling.
+        </p>
+      </div>
+      <div class="feature-media">
+        <figure class="figure-card">
+          <img src="./static/images/analysis_scaling.svg" alt="Scaling behavior with training compute and model size">
+          <figcaption>Generation quality improves with training steps and model size.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ===== Qualitative gallery ===== -->
+    <h3 class="theme-head"><span class="theme-num">04</span><i class="fas fa-images"></i> Generated signals, up close</h3>
+    <p class="section-note" style="margin-top:-0.4rem;">
+      Across settings, samples capture recognizable signal structure rather than degenerating into noise.
+    </p>
+    <div class="gallery">
+      <figure class="figure-card">
+        <img src="./static/images/qual_text_to_signal.png" alt="Text-to-ECG generation example">
+        <figcaption>Text-to-ECG generation</figcaption>
+      </figure>
+      <figure class="figure-card">
+        <img src="./static/images/qual_imputation.png" alt="Sleep-signal imputation example">
+        <figcaption>Sleep-signal imputation</figcaption>
+      </figure>
+      <figure class="figure-card">
+        <img src="./static/images/qual_vitaldb_forecast.svg" alt="Medication-intervened forecasting example across ECG, PLETH, AWP, CO2 and BIS-EEG channels">
+        <figcaption>Medication-intervened forecasting</figcaption>
+      </figure>
+      <figure class="figure-card">
+        <img src="./static/images/qual_bp_translate.png" alt="Blood pressure translation example">
+        <figcaption>Blood-pressure translation</figcaption>
+      </figure>
+      <figure class="figure-card">
+        <img src="./static/images/qual_metabonet_cgm_translation.png" alt="Glucose signal translation example">
+        <figcaption>Glucose-signal translation</figcaption>
+      </figure>
+      <figure class="figure-card">
+        <img src="./static/images/qual_superres.png" alt="Glucose super-resolution example">
+        <figcaption>Glucose super-resolution</figcaption>
+      </figure>
+    </div>
+
+    <!-- model families -->
+    <h3 class="grid-label" style="margin-top:2.5rem;"><i class="fas fa-project-diagram"></i>Model Families Evaluated</h3>
+    <div class="card-grid three compact">
+      <div class="card mini"><h4><i class="fas fa-braille"></i> Diffusion</h4><p>Iterative denoising — DiT.</p></div>
+      <div class="card mini"><h4><i class="fas fa-wind"></i> Flow Matching</h4><p>Continuous transport — SiT.</p></div>
+      <div class="card mini"><h4><i class="fas fa-stream"></i> Autoregressive</h4><p>Sequential tokens — MAR.</p></div>
+      <div class="card mini"><h4><i class="fas fa-random"></i> Normalizing Flows</h4><p>Invertible likelihood — TarFlow.</p></div>
+      <div class="card mini"><h4><i class="fas fa-sitemap"></i> Hierarchical</h4><p>Coarse-to-fine — FractalGen &amp; Imagen.</p></div>
+      <div class="card mini accent"><h4><i class="fas fa-check-double"></i> Unified Protocol</h4><p>Shared tasks, splits, and metrics for every model.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ RESOURCES ============================ -->
+<section id="resources" class="band alt">
+  <div class="container">
+    <p class="eyebrow">Open &amp; Reproducible</p>
+    <h2 class="section-title">Get started</h2>
+    <p class="section-lead">
+      SensorGen ships standardized tasks, training pipelines, and pretrained checkpoints so you can reproduce results
+      or build on them directly.
+    </p>
+
+    <div class="resource-grid">
+      <a class="resource-card" href="https://arxiv.org/abs/2607.04245" target="_blank" rel="noopener noreferrer">
+        <i class="ai ai-arxiv"></i>
+        <h4>Paper</h4>
+        <p>arXiv:2607.04245</p>
+      </a>
+      <a class="resource-card" href="https://github.com/yang-ai-lab/SensorGen" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i>
+        <h4>Code</h4>
+        <p>Tasks, training &amp; evaluation</p>
+      </a>
+      <a class="resource-card" href="https://huggingface.co/yang-ai-lab/SensorGen-SiT" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-cube"></i>
+        <h4>Models</h4>
+        <p>SensorGen-SiT checkpoints</p>
+      </a>
+      <a class="resource-card" href="https://github.com/yang-ai-lab/SensorGen/blob/main/DATASETS.md" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-database"></i>
+        <h4>Data</h4>
+        <p>Dataset access guide</p>
+      </a>
+    </div>
+
+    <div class="content-card quickstart">
+      <h4><i class="fas fa-terminal"></i> Quick start</h4>
+      <ol class="steps">
+        <li><strong>Onboard the code.</strong> Clone the
+          <a href="https://github.com/yang-ai-lab/SensorGen" target="_blank" rel="noopener noreferrer">SensorGen GitHub repository</a>
+          and follow the README to set up the environment and standardized tasks.</li>
+        <li><strong>Download a checkpoint.</strong> Pull a pretrained
+          <a href="https://huggingface.co/yang-ai-lab/SensorGen-SiT" target="_blank" rel="noopener noreferrer">SensorGen-SiT checkpoint</a>
+          from Hugging Face, then run generation and evaluation as described in the repo.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CITE ============================ -->
+<section id="cite" class="band">
+  <div class="container narrow">
+    <p class="eyebrow">Citation</p>
+    <h2 class="section-title">BibTeX</h2>
+    <pre class="bibtex-block"><code>@article{shuai2026sensorgen,
+  title   = {Signal or Noise? Understanding Generative Models for Real-World Sensor Time Series},
+  author  = {Shuai, Zitao and Xu, Zongzhe and Wu, Yuntian and Li, Sirui and Li, Tianhong and Yang, Yuzhe},
+  journal = {arXiv preprint arXiv:2607.04245},
+  year    = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="footer-icons">
+    <a href="https://github.com/yang-ai-lab/SensorGen" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://huggingface.co/yang-ai-lab/SensorGen-SiT" target="_blank" rel="noopener noreferrer" aria-label="Hugging Face"><i class="fas fa-cube"></i></a>
+  </div>
+  <p>SensorGen · A large-scale study of generative models for real-world sensor time series.</p>
+  <p>Page template adapted from the <a href="https://nerfies.github.io/" target="_blank" rel="noopener noreferrer">Nerfies</a> project page.</p>
+</footer>
+
+<script defer src="./static/js/fontawesome.all.min.js"></script>
+<script src="./static/js/index.js"></script>
+</body>
+</html>
