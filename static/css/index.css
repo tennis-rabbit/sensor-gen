@@ -160,15 +160,12 @@ sup { font-size: 0.7em; }
 }
 .hero-tagline strong { color: var(--text); }
 .hero-figure {
-  max-width: 860px; margin: 0 auto; background: #fff;
-  border-radius: var(--radius); box-shadow: var(--shadow);
-  position: relative; aspect-ratio: 1762 / 895; overflow: hidden;
+  max-width: 860px; margin: 0 auto; background: #fff; padding: 0.75rem;
+  border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
 }
-/* the mp4 has its own card baked in with white margins; crop to its interior
-   so no inner card edges (which flicker as sub-pixel lines on zoom) are shown */
 .hero-video {
-  position: absolute; left: -4.43%; top: -11.29%; width: 108.97%; height: 120.7%;
-  object-fit: cover; background: #fff; border: 0;
+  display: block; width: 100%; height: auto; aspect-ratio: 1920 / 1080;
+  border-radius: 8px; background: #fff;
 }
 
 /* ===== Stat strip ===== */
